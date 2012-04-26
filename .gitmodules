@@ -1,0 +1,6 @@
+[submodule "vbench"]
+	path = vbench
+	url = git://github.com/pydata/vbench
+[submodule "code"]
+	path = code
+	url = git://github.com/PyMVPA/PyMVPA

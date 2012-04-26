@@ -1,3 +1,9 @@
+try:
+    import vbench
+except ImportError:
+    import sys
+    sys.path.append('vbench')            # local submodule
+
 from vbench.api import BenchmarkRunner
 from suite import *
 
