@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from vbench.api import BenchmarkRunner
 from suite import *
 

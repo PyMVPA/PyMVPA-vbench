@@ -7,7 +7,7 @@ log = logging.getLogger('vb')
 log.setLevel(logging.DEBUG)
 log.addHandler(logging.StreamHandler(sys.stdout))
 
-modules = ['vb_dataset_ops']
+modules = ['vb_datasetng', 'vb_fxmapper']
 
 log.debug("Loading benchmark modules")
 by_module = {}
@@ -27,11 +27,6 @@ import getpass
 import sys
 
 USERNAME = getpass.getuser()
-
-if sys.platform == 'darwin':
-    HOME = '/Users/%s' % USERNAME
-else:
-    HOME = '/home/%s' % USERNAME
 
 try:
     import ConfigParser
