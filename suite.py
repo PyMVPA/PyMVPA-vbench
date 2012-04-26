@@ -41,7 +41,7 @@ try:
 except:
     cur_dir = os.path.dirname(__file__)
     REPO_PATH = os.path.join(cur_dir, 'code')
-    REPO_URL = 'git@github.com:PyMVPA/PyMVPA.git'
+    REPO_URL = 'git://github.com/PyMVPA/PyMVPA.git'
     DB_PATH = os.path.join(cur_dir, 'db/benchmarks.db')
     TMP_DIR = os.path.join(cur_dir, 'tmp')
     # Assure corresponding directories existence
@@ -59,8 +59,8 @@ BUILD = """
 #"""
 dependencies = ['pymvpa_vb_common.py']
 
-# moment when mvpa2 came to existence
-START_DATE = datetime(2011, 07, 20)
+# next day after mvpa2 came to existence
+START_DATE = datetime(2011, 07, 21)
 #START_DATE = datetime(2012, 04, 1)
 
 # Might not even be there and I do not see it used

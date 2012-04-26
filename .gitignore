@@ -1,3 +1,4 @@
 db
 tmp
 tmp_tmp
+*.pyc
