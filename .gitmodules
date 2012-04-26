@@ -1,6 +1,6 @@
 [submodule "vbench"]
 	path = vbench
-	url = git://github.com/pydata/vbench
+	url = git://github.com/yarikoptic/vbench
 [submodule "code"]
 	path = code
 	url = git://github.com/PyMVPA/PyMVPA
