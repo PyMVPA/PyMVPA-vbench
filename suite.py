@@ -1,14 +1,19 @@
 from vbench.api import Benchmark, GitRepo
 from datetime import datetime
+import logging
+import os, sys
 
-import os
+log = logging.getLogger('vb')
+log.setLevel(logging.DEBUG)
+log.addHandler(logging.StreamHandler(sys.stdout))
 
-modules = []
+modules = ['vb_dataset_ops']
 
+log.debug("Loading benchmark modules")
 by_module = {}
 benchmarks = []
-
 for modname in modules:
+    log.debug("Loading %s" % modname)
     ref = __import__(modname)
     by_module[modname] = [v for v in ref.__dict__.values()
                           if isinstance(v, Benchmark)]
@@ -17,6 +22,7 @@ for modname in modules:
 for bm in benchmarks:
     assert(bm.name is not None)
 
+log.debug("Initializing settings")
 import getpass
 import sys
 
@@ -53,12 +59,14 @@ PREPARE = """
 python setup.py clean
 """
 BUILD = """
-python setup.py build_ext --inplace
 """
+#python setup.py build_ext --inplace
+#"""
 dependencies = ['pymvpa_vb_common.py']
 
 # moment when mvpa2 came to existence
 START_DATE = datetime(2011, 07, 20)
+#START_DATE = datetime(2012, 04, 1)
 
 # Might not even be there and I do not see it used
 # repo = GitRepo(REPO_PATH)
