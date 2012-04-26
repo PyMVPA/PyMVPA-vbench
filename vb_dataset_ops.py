@@ -50,3 +50,12 @@ ds_unique_fancy_id = Benchmark('ds.fa["fancy_id"].unique', setup)
 # misc
 
 ds_summary      = Benchmark('ds.summary()', setup)
+
+
+#----------------------------------------------------------------------
+# mappers
+setup += """
+from mvpa2.mappers.fx import mean_group_sample
+"""
+ds_fx_mean_group_sample = Benchmark('mean_group_sample(["targets", "chunks"])(ds)',
+                                    setup)
