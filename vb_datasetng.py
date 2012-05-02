@@ -22,10 +22,10 @@ ds_copy_shallow = Benchmark('vb_ds0.copy(deep=False)', setup)
 # indexing
 
 ds_index_slice_samples_even = Benchmark('vb_ds0[::2]', setup)
-ds_index_slice_samples_fancy = Benchmark('vb_ds0[idx]', setup)
+ds_index_slice_samples_fancy = Benchmark('vb_ds0[vb_idx0]', setup)
 
 ds_index_slice_even = Benchmark('vb_ds0[::2, ::2]', setup)
-ds_index_slice_fancy = Benchmark('vb_ds0[idx, idx]', setup)
+ds_index_slice_fancy = Benchmark('vb_ds0[vb_idx0, vb_idx0]', setup)
 
 #----------------------------------------------------------------------
 # accessing unique values
@@ -38,10 +38,3 @@ ds_unique_fancy_id = Benchmark('vb_ds0.fa["fancy_id"].unique', setup)
 
 ds_summary      = Benchmark('vb_ds0.summary()', setup)
 
-#----------------------------------------------------------------------
-# mappers
-setup += """
-from mvpa2.mappers.fx import mean_group_sample
-"""
-ds_fx_mean_group_sample = Benchmark('mean_group_sample(["targets", "chunks"])(ds)',
-                                    setup)
