@@ -1,5 +1,6 @@
 from vbench.api import Benchmark, GitRepo
 from datetime import datetime
+from itertools import chain
 import logging
 import os, sys
 
@@ -7,16 +8,27 @@ log = logging.getLogger('vb')
 log.setLevel(logging.DEBUG)
 log.addHandler(logging.StreamHandler(sys.stdout))
 
-modules = ['vb_datasetng', 'vb_fxmapper']
+modules = ['vb_datasetng', 'vb_fxmapper', 'vb_clfs']
 
 log.debug("Loading benchmark modules")
 by_module = {}
 benchmarks = []
+
+def extract_benchmarks(obj):
+    if isinstance(obj, Benchmark):
+        return [obj]
+    elif isinstance(obj, list) or isinstance(obj, tuple):
+        return [x for x in obj if isinstance(x, Benchmark)]
+        ## no recursion for now
+        #list(chain(*[extract_benchmarks(x) for x in obj]))
+    else:
+        return []
+
 for modname in modules:
     log.debug("Loading %s" % modname)
     ref = __import__(modname)
-    by_module[modname] = [v for v in ref.__dict__.values()
-                          if isinstance(v, Benchmark)]
+    by_module[modname] = list(chain(
+        *[extract_benchmarks(x) for x in ref.__dict__.values()]))
     benchmarks.extend(by_module[modname])
 
 for bm in benchmarks:

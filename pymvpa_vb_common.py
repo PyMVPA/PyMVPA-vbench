@@ -21,4 +21,6 @@ vb_ds0 = Dataset(randn(nsamples0, nfeatures0),
                      'feature_group' : np.arange(nfeatures0) // 4,
                      'fancy_id'   : randn(nfeatures0, 4)}
          )
+
+vb_ds0_l2 = vb_ds0[(vb_ds0.T == 'label0') | (vb_ds0.T == 'label1')]
 vb_idx0 = np.r_[slice(0,20,2), 20, 30, slice(50, 70)]
